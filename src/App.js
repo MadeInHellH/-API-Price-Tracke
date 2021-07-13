@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import './App.css';
+import Coin from './Coin';
+
 
 
 
@@ -34,12 +36,23 @@ function App() {
       <h1 className='coin-text'> Search a 
       currency</h1>
       <form>
-        <input type='text'
-        placeholder='Search'
-        className='coin-input' />
+        <input type='text' placeholder='Search'
+        className='coin-input' onChange={handleChange} />
       </form>
      </div>
-     
+     {filteredCoins.map(coin => {
+       return <Coin 
+       key={coin.id}
+       name={coin.name}
+       image={coin.image}
+       symbol={coin.symbol}
+       marketca={coin.market_cap}
+       price={coin.current_price}
+       princeChange={coin.price_change_percentage_24h}
+       volume={coin.total_volume}
+       />
+   
+     })};
     </div>
   );
 }
